@@ -25,4 +25,13 @@ public class MemberRepositoryTests {
         memberRepository.save(member);
            });
     }
+
+    @Test
+    public void insertMember(){
+        Member member = Member.builder().email("user3000@aaa.com")
+                .password("00202")
+                .name("USER3000")
+                .build();
+        memberRepository.save(member);
+    }
 }

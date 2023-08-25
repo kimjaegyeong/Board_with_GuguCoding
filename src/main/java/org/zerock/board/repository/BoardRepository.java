@@ -6,10 +6,11 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.zerock.board.entity.Board;
+import org.zerock.board.repository.search.SearchBoardRepository;
 
 import java.util.List;
 
-public interface BoardRepository extends JpaRepository<Board,Long> {
+public interface BoardRepository extends JpaRepository<Board,Long>, SearchBoardRepository {
     //별칭 필수. board 엔티티는 b, member 엔티티는 w라는 별칭 가짐.
     @Query("select b, w from Board b left join b.writer w where b.bno=:bno")
     Object getBoardWithWriter(@Param("bno") Long bno);
