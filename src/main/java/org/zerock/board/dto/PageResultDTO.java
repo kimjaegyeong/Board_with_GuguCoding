@@ -29,10 +29,10 @@ public class PageResultDTO<DTO, EN> { //EN == ENTITY
         this.size= pageable.getPageSize();
 
         //temp end page
-        int tempEnd = (int)(Math.ceil(page/10.0)) *10;
+        int tempEnd = (int)(Math.ceil(page/10.0)) *10; //1페이지 당 10개씩 보여준다는 가정 하에
         start = tempEnd - 9;
-        prev = start > 1;
-        end = totalPage > tempEnd ? tempEnd : totalPage;
+        prev = start > 1; //만약 시작페이지가 1보다 크면 prev를 보여준다.
+        end = totalPage > tempEnd ? tempEnd : totalPage;  //만약 토탈페이지가 34이면, tempEnd는 40일테니까, tempEnd대신 토탈페이지 값을 end로 사용한다.
         next = totalPage > tempEnd;
 
         pageList= IntStream.rangeClosed(start,end).boxed().collect(Collectors.toList());

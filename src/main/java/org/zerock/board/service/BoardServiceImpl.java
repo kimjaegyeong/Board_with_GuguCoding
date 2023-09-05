@@ -40,12 +40,13 @@ public class BoardServiceImpl implements BoardService{
     @Override
     public PageResultDTO<BoardDTO, Object[]> getList(PageRequestDTO pageRequestDTO) {
         Function<Object[], BoardDTO> fn = (en-> entityToDTO((Board)en[0], (Member)en[1], (Long)en[2]));
-        Page<Object[]> result = boardRepository.searchPage(
-                pageRequestDTO.getType(),
-                pageRequestDTO.getKeyword(),
-                pageRequestDTO.getPageable(Sort.by("bno").descending()));
+        //function은 entity를 BoardDTO로 변환할 때 어떤 행위를 통해 변환할 지 지정해주는 함수형인터페이스이다.
+        Page<Object[]> result = boardRepository.searchPage( // pageRequestDTO를 이용해서 db로부터 조건에 맞는 page객체 가져오기
+                pageRequestDTO.getType(), // 지정한 type 조건
+                pageRequestDTO.getKeyword(), //지정한 keyword
+                pageRequestDTO.getPageable(Sort.by("bno").descending())); //정렬 방법
 
-        return new PageResultDTO<>(result, fn);
+        return new PageResultDTO<>(result, fn); //PageResultDTO로 Page객체와 entity->DTO 변환 기준을 파라미터로 전달
     }
 
     @Override

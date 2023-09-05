@@ -19,7 +19,7 @@ public class PageRequestDTO<DTO, EN> {
     public PageRequestDTO(){ //초기값
         this.page = 1;
         this.size = 10;
-    }
+         }
 
     public Pageable getPageable(Sort sort){
         //이 메소드가 pageRequestDTO의 진짜목적. JAP쪽에서 사용하는 Pageable 타입의 객체를 생성

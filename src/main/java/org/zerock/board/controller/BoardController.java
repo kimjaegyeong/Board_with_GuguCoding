@@ -27,6 +27,7 @@ public class BoardController {
 
     @GetMapping("/list")
     public void list(PageRequestDTO pageRequestDTO, Model model){
+        System.out.println(pageRequestDTO.toString());
         PageResultDTO pageResultDTO =boardService.getList(pageRequestDTO);
         model.addAttribute("result", pageResultDTO);
     }

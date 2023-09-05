@@ -84,7 +84,7 @@ public class SearchBoardRepositoryImpl extends QuerydslRepositorySupport impleme
 
         BooleanBuilder booleanBuilder = new BooleanBuilder();
         BooleanExpression expression = board.bno.gt(0L);
-
+        booleanBuilder.and(expression);
         if (type != null) {
             String[] typeArr = type.split(" ");
             BooleanBuilder conditionBuilder = new BooleanBuilder();
@@ -129,6 +129,5 @@ public class SearchBoardRepositoryImpl extends QuerydslRepositorySupport impleme
                 pageable,
                 count
         );
-
     }
 }
